@@ -1,6 +1,8 @@
 name: demo-pipeline
 run-name: ${{ github.actor }} is currious if Github is more promising
-on: [push]
+on: 
+  - [push]
+  - [workflow_dispatch]
 jobs:
   check-bats-version:
     runs-on: ubuntu-latest
