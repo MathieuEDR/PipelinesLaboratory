@@ -2,8 +2,19 @@ name: demo-pipeline
 run-name: ${{ github.actor }} is currious if Github is more promising
 on: [push, workflow_dispatch]
 jobs:
-  check-bats-version:
+  auto-step:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+      - run: npm install -g bats
+      - run: bats -v
+
+  manual-step:
+    runs-on: ubuntu-latest
+    environment: ManualTrigger
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
